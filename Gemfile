@@ -2,7 +2,8 @@ source 'https://rubygems.org'
  
  # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
  gem 'rails', '4.2.5'
-
+ gem 'devise'
+ gem 'bootstrap-sass'
  group :production do
    gem 'pg'
    gem 'rails_12factor'
@@ -12,12 +13,10 @@ source 'https://rubygems.org'
    gem 'sqlite3'
  end
  
- gem 'sass-rails', '~> 5.0'
  gem 'uglifier', '>= 1.3.0'
  gem 'coffee-rails', '~> 4.1.0'
  gem 'jquery-rails'
  gem 'turbolinks'
- gem 'bootstrap'
  gem 'figaro'
  gem 'pry'
 
@@ -30,6 +29,3 @@ source 'https://rubygems.org'
    gem 'faker'
    gem 'factory_girl_rails'
  end
- 
- gem 'devise'
- gem 'bootstrap-sass'
