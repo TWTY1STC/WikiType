@@ -1,13 +1,14 @@
-
+<div>
 <p>
   <strong>Title:</strong>
   <%= @topic.title %>
 </p>
-
+</div>
+<div>
 <p>
   <strong>Description:</strong>
   <%= @topic.description %>
 </p>
-
+</div>
 <%= link_to 'Edit', edit_topic_path(@topic) %> |
 <%= link_to 'Back', topics_path %>
