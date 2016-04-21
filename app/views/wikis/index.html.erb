@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<div class="jumbotron"><h1>Wikis</h1></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th>Private</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @wikis.each do |wiki| %>
+      <tr>
+        <td><%= wiki.title %></td>
+        <td><%= wiki.body %></td>
+        <td><%= wiki.private %></td> Don't like this!!
+        <td><%= wiki.user %></td>
+        <td><%= link_to 'Show', wiki %></td>
+        <% if user_signed_in? %>
+          <td><%= link_to 'Edit', edit_wiki_path(wiki) %></td>
+          <td><%= link_to 'Destroy', wiki, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if user_signed_in? %>
+  <%= link_to 'New Wiki', new_wiki_path %>
+<% end %>

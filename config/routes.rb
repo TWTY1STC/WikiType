@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+ 
+  root "wikis#index"
   devise_for :users
-  root "topics#index"
-
+  resources :wikis
   resources :topics
 end
