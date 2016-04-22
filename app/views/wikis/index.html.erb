@@ -2,7 +2,7 @@
 
 <div class="jumbotron"><h1>Wikis</h1></div>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Title</th>
@@ -18,8 +18,14 @@
       <tr>
         <td><%= wiki.title %></td>
         <td><%= wiki.body %></td>
-        <td><%= wiki.private %></td> Don't like this!!
-        <td><%= wiki.user %></td>
+        <td>
+          <% if wiki.private? %>
+            <span class="glyphicon glyphicon-ok"></span>
+          <% else %>
+            <span class="glyphicon glyphicon-ok"></span>
+          <% end %>
+        </td>
+        <td><%= wiki.user.username %></td>
         <td><%= link_to 'Show', wiki %></td>
         <% if user_signed_in? %>
           <td><%= link_to 'Edit', edit_wiki_path(wiki) %></td>

@@ -21,7 +21,7 @@ class WikisController < ApplicationController
 
   # POST /wikis
   def create
-    @wiki = Wiki.new(wiki_params)
+    @wiki = current_user.wikis.new(wiki_params)
 
     if @wiki.save
       redirect_to @wiki, notice: 'Wiki was successfully created.'
@@ -53,6 +53,6 @@ class WikisController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def wiki_params
-      params.require(:wiki).permit(:title, :body, :private, :user_id)
+      params.require(:wiki).permit(:title, :body, :private)
     end
 end
