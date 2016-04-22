@@ -12,12 +12,16 @@
 
 <p>
   <strong>Private:</strong>
-  <%= @wiki.private %>
+    <% if @wiki.private? %>
+      <span class="glyphicon glyphicon-ok"></span>
+    <% else %>
+      <span class="glyphicon glyphicon-remove"></span>
+    <% end %>
 </p>
 
 <p>
   <strong>User:</strong>
-  <%= @wiki.user %>
+  <%= @wiki.user.username %>
 </p>
 
 <% if user_signed_in? %>
