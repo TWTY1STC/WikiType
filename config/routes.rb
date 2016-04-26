@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   devise_for :users
   resources :wikis
   resources :topics
+  resources :charges
 end

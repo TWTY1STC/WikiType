@@ -4,25 +4,23 @@
   <h4>Discover | Create | Colloberate</h4>
   <h1>Wiki Topics</h1>
   <div class="row">
-    <div class="col-sm-6 col-md-4">
+    <div class="col-md-6">
       <div class="thumbnail">
         <img src="..." alt="...">
         <div class="caption">
           <h3><strong>Free Membership</strong></h3>
           <p>Discover and create and collaborate on unlimited public wikis</p>
-          <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+          <p><%= link_to "Sign Up", new_user_registration_path, :class => "btn btn-primary" %></p>
         </div>
       </div>
     </div>
-  </div>
-  <div class="row">
-  <div class="col-sm-6 col-md-4">
+  <div class="col-md-6">
     <div class="thumbnail">
       <img src="..." alt="...">
       <div class="caption">
         <h3><strong>Upgrade to Premium</strong></h3>
-        <p>Set up private wikis for all your project and invite collaborators to contribute their ideas.</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+        <p>Create private wikis for all your projects and invite collaborators to contribute their ideas.</p>
+        <p><%= link_to "Upgrade Now", new_charge_path, :class => "btn btn-warning" %></p>
       </div>
     </div>
   </div>
@@ -42,7 +40,7 @@
   <tbody>
     <% @wikis.each do |wiki| %>
       <tr>
-        <td><%= wiki.title %></td>
+        <td><strong><%= wiki.title %></strong></td>
         <td><%= wiki.body %></td>
         <td>
           <% if wiki.private? %>
