@@ -21,11 +21,13 @@
         <%= f.label :body %><br>
         <%= f.text_area :body, class: "form-control" %>
       </div>
-      <div class="field">
-        <%= f.label :private, class: 'checkbox' do %>
-          <%= f.check_box :private %> Private
-        <% end %>
-      </div>
+      <% if current_user.admin? || current_user.premium? %>
+        <div class="field">
+          <%= f.label :private, class: 'checkbox' do %>
+            <%= f.check_box :private %> Private
+          <% end %>
+        </div>
+      <% end %>
       <div class="field", id="submit-btn">
           <%= f.submit "Save", class: 'btn btn-success' %>
       </div>
