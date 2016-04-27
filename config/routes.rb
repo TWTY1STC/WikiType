@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   devise_for :users
   resources :wikis
   resources :topics
-  resources :charges
+  resources :charges, only: [:new, :create]
+  get 'downgrade' => 'charges#downgrade', :as => :downgrade
 end

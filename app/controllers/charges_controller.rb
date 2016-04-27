@@ -5,21 +5,32 @@ class ChargesController < ApplicationController
   def create
     #amount in cents
     @amount = 1500
-    
-    customer = Stripe::Customer.create(
-      :email => params[:stripeEmail],
-      :source => params[:stripeToken]
-    )
-    
-    charge = Stripe::Charge.create(
-      :customer   => customer.id, 
-      :amount     => @amout,
-      :description => 'Premium member',
-      :currency   => 'usd'
-      )
+
+  customer = Stripe::Customer.create(
+     email: current_user.email,
+     card: params[:stripeToken]
+   )
+ 
+   # Where the real magic happens
+   charge = Stripe::Charge.create(
+     customer: customer.id, # Note -- this is NOT the user_id in your app
+     amount: @amount,
+     description: "Premium Membership- #{current_user.email}",
+     currency: 'usd'
+   )
+
+      
+    current_user.premium!  
       
     rescue Stripe::CardError => e
       flash[:error] = e.message
       redirect_to new_charge_path
+  end
+  
+  def downgrade
+    current_user.standard!
+    flash[:notice] = "You have downgraded to free standard membership."
+    redirect_to root_path
+    
   end
 end
