@@ -4,16 +4,15 @@ class WikisController < ApplicationController
   # GET /wikis
   def index
     @wikis = Wiki.visible_to(current_user)
+    #@wikis = policy_scope(Wiki)
   end
 
   # GET /wikis/1
   def show
     @wiki = Wiki.find(params[:id])
- 
-     if @wiki.private || current_user
-       flash[:alert] = "You must be signed in to view private wikis."
-       redirect_to new_user_registration_path
-     end
+    Rails.logger.info  ">>>> wiki: #{@wiki.inspect}"
+    Rails.logger.info ">>>> wiki public: #{@wiki.public?}"
+    authorize @wiki
   end
 
   # GET /wikis/new
