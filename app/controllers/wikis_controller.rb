@@ -10,9 +10,12 @@ class WikisController < ApplicationController
   # GET /wikis/1
   def show
     @wiki = Wiki.find(params[:id])
-    #Rails.logger.info  ">>>> wiki: #{@wiki.inspect}"
-    #Rails.logger.info ">>>> wiki public: #{@wiki.public?}"
     authorize @wiki
+
+     if @wiki.private || current_user
+       flash[:alert] = "You must be signed in to view private wikis."
+       redirect_to new_user_registration_path
+     end
   end
 
   # GET /wikis/new
