@@ -29,7 +29,8 @@ class ChargesController < ApplicationController
   
   def downgrade
     current_user.standard!
-    flash[:notice] = "You have downgraded to free standard membership."
+    current_user.wikis.where(:private, true).update_attributes(:private, false)
+    flash[:notice] = "You have downgraded to free standard membership and your private wikis are now public."
     redirect_to root_path
     
   end

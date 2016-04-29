@@ -3,15 +3,15 @@ class WikisController < ApplicationController
 
   # GET /wikis
   def index
-    @wikis = Wiki.visible_to(current_user)
-    #@wikis = policy_scope(Wiki)
+    #@wikis = Wiki.visible_to(current_user)
+    @wikis = policy_scope(Wiki)
   end
 
   # GET /wikis/1
   def show
     @wiki = Wiki.find(params[:id])
-    Rails.logger.info  ">>>> wiki: #{@wiki.inspect}"
-    Rails.logger.info ">>>> wiki public: #{@wiki.public?}"
+    #Rails.logger.info  ">>>> wiki: #{@wiki.inspect}"
+    #Rails.logger.info ">>>> wiki public: #{@wiki.public?}"
     authorize @wiki
   end
 

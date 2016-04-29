@@ -1,6 +1,6 @@
 class WikiPolicy < ApplicationPolicy
   
-  def show
+  def show?
     record.public? || user && (record.user == user || user.admin?) 
   end
   
