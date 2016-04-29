@@ -27,8 +27,25 @@
     </div>
   </nav>
   <div class="body">
-    <p id="notice"<%= notice %></p>
-    <p id="alert"<%= alert %></p>
+   <div class="flash">
+    <% if flash[:notice] %>
+      <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[:notice] %>
+      </div>
+    <% elsif flash.now[:alert] %>
+      <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[:alert] %>
+      </div>
+    <% elsif flash.now[:alert] %>
+      <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+  </div>  
+  
 
     <%= yield %>
     <div class="footer"> &copy;2016 </div> 
