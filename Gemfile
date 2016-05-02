@@ -5,6 +5,7 @@ source 'https://rubygems.org'
  gem 'devise'
  gem 'bootstrap-sass'
  gem 'pundit'
+ gem 'stripe'
  group :production do
    gem 'pg'
    gem 'rails_12factor'
