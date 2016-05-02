@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :topics
   resources :charges, only: [:new, :create]
   get 'downgrade' => 'charges#downgrade', :as => :downgrade
+  resources :collaborators, only: [:create, :destroy]
 end
