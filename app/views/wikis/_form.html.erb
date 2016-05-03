@@ -19,7 +19,7 @@
       </div>
       <div class="field">
         <%= f.label :body %><br>
-        <%= f.text_area markdown(:body), class: "form-control" %>
+        <%= f.text_area :body, class: "form-control" %>
       </div>
       <% if current_user.admin? || current_user.premium? %>
         <div class="field">
