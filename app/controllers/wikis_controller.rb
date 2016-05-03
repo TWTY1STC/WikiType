@@ -8,9 +8,7 @@ class WikisController < ApplicationController
 
   # GET /wikis/1
   def show
-    @wiki = Wiki.find(params[:id])
-    authorize @wiki
-
+   authorize @wiki
   end
 
   # GET /wikis/new
@@ -20,6 +18,7 @@ class WikisController < ApplicationController
 
   # GET /wikis/1/edit
   def edit
+    authorize @wiki
   end
 
   # POST /wikis

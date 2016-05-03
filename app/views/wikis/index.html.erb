@@ -26,7 +26,7 @@
   </div>
   </div>
   <% if user_signed_in? %>
-    <%= link_to 'New Wiki', new_wiki_path %>
+    <%= link_to 'Create a New Wiki', new_wiki_path%>
   <% end %>
 </div>
 
@@ -55,7 +55,7 @@
         </td>
         <td><%= wiki.user.username %></td>
         <td><%= link_to 'Show', wiki %></td>
-        <% if user_signed_in? %>
+        <% if policy(wiki).edit? %>
           <td><%= link_to 'Edit', edit_wiki_path(wiki) %></td>
           <td><%= link_to 'Destroy', wiki, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>

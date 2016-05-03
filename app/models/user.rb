@@ -16,4 +16,8 @@ class User < ActiveRecord::Base
     collaborators.where(wiki_id: wiki.id).first
   end
   
+  def wikis_collaborated_on
+    collaborators.map(&:wiki)
+  end
+  
 end
