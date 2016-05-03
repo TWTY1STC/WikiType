@@ -10,4 +10,10 @@ class User < ActiveRecord::Base
   before_save { self.role ||= :standard}
   
   enum role: [:standard, :premium, :admin]
+  
+  #User can be a collaborator
+  def collaborator_for(wiki)
+    collaborators.where(wiki_id: wiki.id).first
+  end
+  
 end

@@ -4,18 +4,27 @@ class WikiPolicy < ApplicationPolicy
     record.public? || user && (record.user == user || user.admin?) 
   end
   
-  class Scope < Scope
+  class Scope
+    attr_reader :user, :scope
+    
+    def initialize(user, scope)
+      @user = user
+      @scope = scope
+    end
+    
     def resolve
-      if false # user && user.admin?
-        scope.all
-      elsif user
-        wikis = []
-        wikis << scope.where(private: false)
-        wikis << scope.where(user_id: user.id)
-        wikis.flatten.uniq
-      else
-        scope.where(private: false)
+      wikis = []
+      if user.role == 'admin'
+        wikis = scope.all #admin user sees all wikis
+      elsif user.role == 'premium'
+        all_wikis = scope.all
+        all_wikis.each do |wiki|
+          if wiki.public? || wiki.owner == user || wiki.collaborators.include?(user)
+            wikis << wiki #premium users see public, own and collaborating wikis
+          end
+        end
       end
+      wikis
     end
   end
 end
