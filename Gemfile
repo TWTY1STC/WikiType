@@ -6,6 +6,7 @@ source 'https://rubygems.org'
  gem 'bootstrap-sass'
  gem 'pundit'
  gem 'stripe'
+ gem 'redcarpet'
  group :production do
    gem 'pg'
    gem 'rails_12factor'
